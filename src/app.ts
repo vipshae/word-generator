@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 // app.use('/api/generate', generateRoute(wordList));
-app.use('/api/generate', generateRoute(wordList));
+app.use('/', generateRoute(wordList));
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
