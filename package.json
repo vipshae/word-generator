@@ -2,7 +2,7 @@
   "name": "word-generator",
   "version": "1.0.0",
   "description": "A simple Express.js application for generating english words",
-  "main": "index.js",
+  "main": "dist/app.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
     "build": "tsc",

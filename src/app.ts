@@ -1,11 +1,8 @@
+import 'dotenv/config';
 import express, { type Application } from 'express';
 import { WordMap } from './domain/wordMap.interface';
 import words from '../data/words.json';
 import cron from 'node-cron';
-// only import if local .env file is present for non production environments
-if (process.env.NODE_ENV !== 'production') {
-  void import('dotenv/config');
-}
 
 const wordList: WordMap[] = words as WordMap[];
 const notifyChannel: string = 'words';
@@ -16,6 +13,10 @@ const app: Application = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+
+app.get('/', (req, res) => {
+  res.send('Hello from Word Generator and Notifier Service!');
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
