@@ -22,7 +22,7 @@ app.get('/health', (req, res) => {
   res.status(200).send('OK');
 });
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
   if (!process.env.RAPIDAPI_HOST || !process.env.RAPIDAPI_KEY) {
     console.error('RAPIDAPI_HOST and RAPIDAPI_KEY must be set in environment variables');
@@ -76,6 +76,8 @@ app.listen(PORT, () => {
   });  
 });
 
+server.keepAliveTimeout = 120 * 1000;
+server.headersTimeout = 120 * 1000;
 
 const html = `
 <!DOCTYPE html>
