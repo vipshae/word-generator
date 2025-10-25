@@ -7,7 +7,7 @@ import cron from 'node-cron';
 const wordList: WordMap[] = words as WordMap[];
 const notifyChannel: string = 'words';
 const notifyUrl: string = 'https://ntfy.sh/' + notifyChannel;
-const cronSchedule: string = '* * * * *'; // Every 30 minutes
+const cronSchedule: string = '*/30 * * * *'; // Every 30 minutes
 
 const app: Application = express();
 const PORT = process.env.PORT || 3000;
@@ -124,7 +124,7 @@ const html = `
   </head>
   <body>
     <section>
-      Hello from Render!
+      Hello from Word Generator!
     </section>
   </body>
 </html>
