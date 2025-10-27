@@ -7,7 +7,6 @@ import cron from 'node-cron';
 const wordList: WordMap[] = words as WordMap[];
 const notifyChannel: string = 'words';
 const notifyUrl: string = 'https://ntfy.sh/' + notifyChannel;
-const cronSchedule: string = '*/30 * * * *'; // Every 30 minutes
 
 const app: Application = express();
 const PORT = process.env.PORT || 3000;
@@ -28,6 +27,7 @@ const server = app.listen(PORT, () => {
     console.error('RAPIDAPI_HOST and RAPIDAPI_KEY must be set in environment variables');
     process.exit(1);
   }
+  const cronSchedule: string = process.env.CRON_SCHEDULE || '0 9 * * *'; // Default: every day at 9 AM
 
   cron.schedule(cronSchedule, async() => {
     const random: WordMap = wordList[Math.floor(Math.random() * wordList.length)];
